@@ -11,11 +11,12 @@ const allowedCors = [
 // eslint-disable-next-line consistent-return
 module.exports.checkCorseError = (req, res, next) => {
   const { origin } = req.headers; // Сохраняем источник запроса в переменную origin
+  // сохраняем список заголовков исходного запроса
+  const requestHeaders = req.headers['access-control-request-headers'];
   // проверяем, что источник запроса есть среди разрешённых
   if (allowedCors.includes(origin)) {
     // устанавливаем заголовок, который разрешает браузеру запросы с этого источника
     res.header('Access-Control-Allow-Origin', origin);
-    return res.end();
   }
 
   const { method } = req; // Сохраняем тип запроса (HTTP-метод) в соответствующую переменную
@@ -27,6 +28,8 @@ module.exports.checkCorseError = (req, res, next) => {
   if (method === 'OPTIONS') {
     // разрешаем кросс-доменные запросы любых типов (по умолчанию)
     res.header('Access-Control-Allow-Methods', DEFAULT_ALLOWED_METHODS);
+    // разрешаем кросс-доменные запросы с этими заголовками
+    res.header('Access-Control-Allow-Headers', requestHeaders);
     return res.end();
   }
 
