@@ -6,9 +6,12 @@ const { cardRouter } = require('./routes/cards');
 const auth = require('./middlewares/auth');
 const NotFound = require('./errors/not-found');
 const { handleError } = require('./utils/handleError');
+const { checkCorseError } = require('./utils/checkCorseError');
 
 const { PORT = 3000 } = process.env;
 const app = express();
+
+app.use(checkCorseError);
 
 app.use(express.json());
 
