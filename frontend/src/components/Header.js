@@ -7,20 +7,20 @@ function Header({ email, logOut }) {
       <img className="header__logo" src={logo} alt="Логотип Место-Россия" />
 
       <Switch>
-        <Route path="/sign-in">
-          <Link className="header__link" to="sign-up">
+        <Route path="/signin">
+          <Link className="header__link" to="signup">
             Рeгистрация
           </Link>
         </Route>
-        <Route path="/sign-up">
-          <Link className="header__link" to="sign-in">
+        <Route path="/signup">
+          <Link className="header__link" to="signin">
             Войти
           </Link>
         </Route>
         <Route exact path="/">
           <p className="header__email">
             {email}
-            <Link className="header__link" onClick={logOut} to="sign-in">
+            <Link className="header__link" onClick={logOut} to="signin">
               Выйти
             </Link>
           </p>
