@@ -128,7 +128,7 @@ function App() {
           setStatusInfoTooltip(true);
           setinfoTooltipMessage("Вы успешно зарегистрировались!");
           setIsInfoTooltipPopupOpen(true);
-          history.push("/sign-in");
+          history.push("/signin");
         }
       })
       .catch((err) => {
@@ -183,14 +183,14 @@ function App() {
             onCardDelete={handleCardDelete}
           />
 
-          <Route path="/sign-in">
+          <Route path="/signin">
             <Login handleLogin={handleLogin} />
           </Route>
-          <Route path="/sign-up">
+          <Route path="/signup">
             <Register handleRegister={handleRegister} />
           </Route>
           <Route path="*">
-            <Redirect to="/sign-in" />
+            <Redirect to="/signin" />
           </Route>
         </Switch>
 

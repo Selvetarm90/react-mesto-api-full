@@ -67,10 +67,10 @@ class Api {
 
 const api = new Api({
   baseUrl: "https://api.mesto.paramonov.nomoredomains.sbs",
-  // headers: {
-  //   authorization: "5f54aa7b-f781-4bbd-a84a-c9d65d5c54ef",
-  //   "Content-Type": "application/json",
-  // },
+   headers: {
+     //authorization: "5f54aa7b-f781-4bbd-a84a-c9d65d5c54ef",
+     "Content-Type": "application/json",
+   },
 });
 
 export default api;
