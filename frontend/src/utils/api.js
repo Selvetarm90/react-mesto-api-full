@@ -68,7 +68,7 @@ class Api {
 const api = new Api({
   baseUrl: "https://api.mesto.paramonov.nomoredomains.sbs",
    headers: {
-     //authorization: "5f54aa7b-f781-4bbd-a84a-c9d65d5c54ef",
+     authorization: `Bearer ${localStorage.getItem("jwt")}`,
      "Content-Type": "application/json",
    },
 });
