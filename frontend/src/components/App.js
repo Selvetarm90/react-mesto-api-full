@@ -49,7 +49,7 @@ function App() {
         .then((data) => {
           if (data) {
             setLoggedIn(true);
-            setEmail(data.data.email);
+            setEmail(data.email);
             history.push("/");
           }
         })
