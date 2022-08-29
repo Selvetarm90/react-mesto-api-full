@@ -29,7 +29,7 @@ function Main(props) {
       </section>
 
       <section className="cards">
-        {props.cards.cards.map((item) => (
+        {props.cards.map((item) => (
           <Card
             card={item}
             key={item._id}
