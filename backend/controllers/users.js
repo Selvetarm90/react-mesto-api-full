@@ -29,7 +29,7 @@ module.exports.createUser = (req, res, next) => {
     .then((data) => {
       const user = data.toObject();
       delete user.password;
-      res.send({ data: user });
+      res.send(data);
     })
     .catch((err) => {
       if (err.code === 11000) {
@@ -95,7 +95,7 @@ module.exports.updateProfile = (req, res, next) => {
       if (!user) {
         throw new NotFound('Пользователь с заданным ID не найден');
       }
-      res.send({ data: user });
+      res.send(user);
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {
@@ -124,7 +124,7 @@ module.exports.updateAvatar = (req, res, next) => {
       if (!user) {
         throw new NotFound('Пользователь с заданным ID не найден');
       }
-      res.send({ data: user });
+      res.send(user);
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {
