@@ -47,7 +47,7 @@ module.exports.createUser = (req, res, next) => {
 module.exports.getUsers = (req, res, next) => {
   User.find({})
     .then((users) => {
-      res.send({ data: users });
+      res.send(users);
     })
     .catch((err) => {
       next(err);
@@ -70,7 +70,7 @@ module.exports.qetUserById = (req, res, next) => {
       if (!user) {
         throw new NotFound('Пользователь с заданным ID не найден');
       }
-      res.send({ data: user });
+      res.send(user);
     })
     .catch((err) => {
       if (err.name === 'CastError') {
@@ -144,7 +144,7 @@ module.exports.login = (req, res, next) => {
   return User.findUserByCredentials(email, password)
     .then((user) => {
       const token = jwt.sign({ _id: user._id }, JWT_SECRET, { expiresIn: '7d' });
-      res.send({ token });
+      res.send(token);
     })
     .catch((err) => {
       next(err);
