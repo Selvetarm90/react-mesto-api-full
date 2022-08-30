@@ -2,7 +2,7 @@ class Api {
   constructor(options) {
     this._baseUrl = options.baseUrl;
     this._headers = options.headers;
-    this._token = localStorage.getItem('jwt');
+    this._token = localStorage.getItem('jwt') ? localStorage.getItem('jwt') : {};
   }
 
   _handleResponse(res) {
