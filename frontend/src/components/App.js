@@ -27,12 +27,13 @@ function App() {
   const [statusInfoTooltip, setStatusInfoTooltip] = useState(false);
   const [infoTooltipMessage, setinfoTooltipMessage] = useState("");
   const [email, setEmail] = useState("");
+  const [token, setToken] = useState("");
   const history = useHistory();
 
   useEffect(() => {
     if (loggedIn) {
       api
-        .getAllData()
+        .getAllData(token)
         .then(([initialCards, userInfo]) => {
           setCurrentUser(userInfo);
           setCards(initialCards);
@@ -75,7 +76,7 @@ function App() {
 
   const handleUpdateUser = (newUserData) => {
     api
-      .changeUserInfo(newUserData)
+      .changeUserInfo(newUserData, token)
       .then((data) => {
         setCurrentUser(data);
         closeAllPopups();
@@ -85,7 +86,7 @@ function App() {
 
   const handleUpdateAvatar = (newAvatar) => {
     api
-      .changeAvatar(newAvatar)
+      .changeAvatar(newAvatar, token)
       .then((data) => {
         setCurrentUser(data);
         closeAllPopups();
@@ -95,7 +96,7 @@ function App() {
 
   const handleCardLike = ({ card, isLiked }) => {
     api
-      .toggleLike(card._id, isLiked)
+      .toggleLike(card._id, isLiked, token)
       .then((newCard) => {
         setCards((cards) => cards.map((c) => (c._id === card._id ? newCard : c)));
       })
@@ -104,7 +105,7 @@ function App() {
 
   const handleCardDelete = (card) => {
     api
-      .delCard(card._id)
+      .delCard(card._id, token)
       .then(() => {
         setCards((cards) => cards.filter((c) => c._id !== card._id));
       })
@@ -113,7 +114,7 @@ function App() {
 
   const handleAddPlaceSubmit = (newCard) => {
     api
-      .addCard(newCard)
+      .addCard(newCard, token)
       .then((data) => {
         setCards([data, ...cards]);
         closeAllPopups();
@@ -145,6 +146,7 @@ function App() {
       .then((data) => {
         if (data) {
           localStorage.setItem("jwt", data.token);
+          setToken(data.token);
           setEmail(email);
           setLoggedIn(true);
           history.push("/");
@@ -160,6 +162,7 @@ function App() {
 
   const handleLogout = () => {
     localStorage.removeItem("jwt");
+    setToken("");
     setEmail("");
     setLoggedIn(false);
   };

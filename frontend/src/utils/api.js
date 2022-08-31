@@ -1,8 +1,8 @@
 class Api {
   constructor(options) {
     this._baseUrl = options.baseUrl;
-    this._headers = options.headers;
-    this._token = options.token;
+   //this._headers = options.headers;
+   // this._token = localStorage.getItem('jwt') ? localStorage.getItem('jwt') : {};
   }
 
   _handleResponse(res) {
@@ -12,14 +12,20 @@ class Api {
   getInitialCards(token) {
     return fetch(`${this._baseUrl}/cards`, {
       method: "GET",
-      headers: this._headers,
+      headers: {
+        authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
     }).then(this._handleResponse);
   }
 
   getUserInfo(token) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: "GET",
-      headers: this._headers,
+      headers: {
+        authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
     }).then(this._handleResponse);
   }
 
@@ -30,7 +36,10 @@ class Api {
   changeUserInfo(data, token) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
-      headers: this._headers,
+      headers: {
+        authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify(data),
     }).then(this._handleResponse);
   }
@@ -38,7 +47,10 @@ class Api {
   addCard(data, token) {
     return fetch(`${this._baseUrl}/cards`, {
       method: "POST",
-      headers: this._headers,
+      headers: {
+        authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify(data),
     }).then(this._handleResponse);
   }
@@ -46,33 +58,41 @@ class Api {
   delCard(id, token) {
     return fetch(`${this._baseUrl}/cards/${id}`, {
       method: "DELETE",
-      headers: this._headers,
+      headers: {
+        authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
     }).then(this._handleResponse);
   }
 
   toggleLike(id, status, token) {
     return fetch(`${this._baseUrl}/cards/${id}/likes`, {
       method: status ? "DELETE" : "PUT",
-      headers: this._headers,
+      headers: {
+        authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
     }).then(this._handleResponse);
   }
 
   changeAvatar(data, token) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: "PATCH",
-      headers: this._headers,
+      headers: {
+        authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify(data),
     }).then(this._handleResponse);
   }
 }
 
 const api = new Api({
-  token: localStorage.getItem("jwt"),
   baseUrl: "https://api.mesto.paramonov.nomoredomains.sbs",
-   headers: {
-     authorization: `Bearer ${this._token}`,
-     "Content-Type": "application/json",
-   },
+  //  headers: {
+  //    authorization: `Bearer ${this._token}`,
+  //    "Content-Type": "application/json",
+  //  },
 });
 
 export default api;
