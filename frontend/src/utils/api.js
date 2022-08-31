@@ -2,32 +2,31 @@ class Api {
   constructor(options) {
     this._baseUrl = options.baseUrl;
     this._headers = options.headers;
-    this._token = localStorage.getItem('jwt') ? localStorage.getItem('jwt') : {};
   }
 
   _handleResponse(res) {
     return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
   }
 
-  getInitialCards() {
+  getInitialCards(token) {
     return fetch(`${this._baseUrl}/cards`, {
       method: "GET",
       headers: this._headers,
     }).then(this._handleResponse);
   }
 
-  getUserInfo() {
+  getUserInfo(token) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: "GET",
       headers: this._headers,
     }).then(this._handleResponse);
   }
 
-  getAllData() {
-    return Promise.all([this.getInitialCards(), this.getUserInfo()]);
+  getAllData(token) {
+    return Promise.all([this.getInitialCards(token), this.getUserInfo(token)]);
   }
 
-  changeUserInfo(data) {
+  changeUserInfo(data, token) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
       headers: this._headers,
@@ -35,7 +34,7 @@ class Api {
     }).then(this._handleResponse);
   }
 
-  addCard(data) {
+  addCard(data, token) {
     return fetch(`${this._baseUrl}/cards`, {
       method: "POST",
       headers: this._headers,
@@ -43,21 +42,21 @@ class Api {
     }).then(this._handleResponse);
   }
 
-  delCard(id) {
+  delCard(id, token) {
     return fetch(`${this._baseUrl}/cards/${id}`, {
       method: "DELETE",
       headers: this._headers,
     }).then(this._handleResponse);
   }
 
-  toggleLike(id, status) {
+  toggleLike(id, status, token) {
     return fetch(`${this._baseUrl}/cards/${id}/likes`, {
       method: status ? "DELETE" : "PUT",
       headers: this._headers,
     }).then(this._handleResponse);
   }
 
-  changeAvatar(data) {
+  changeAvatar(data, token) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: "PATCH",
       headers: this._headers,
@@ -69,7 +68,7 @@ class Api {
 const api = new Api({
   baseUrl: "https://api.mesto.paramonov.nomoredomains.sbs",
    headers: {
-     authorization: `Bearer ${this._token}`,
+     authorization: `Bearer ${localStorage.getItem("token")}`,
      "Content-Type": "application/json",
    },
 });
