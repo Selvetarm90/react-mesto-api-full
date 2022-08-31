@@ -1,8 +1,6 @@
 class Api {
   constructor(options) {
     this._baseUrl = options.baseUrl;
-   //this._headers = options.headers;
-   // this._token = localStorage.getItem('jwt') ? localStorage.getItem('jwt') : {};
   }
 
   _handleResponse(res) {
@@ -89,10 +87,6 @@ class Api {
 
 const api = new Api({
   baseUrl: "https://api.mesto.paramonov.nomoredomains.sbs",
-  //  headers: {
-  //    authorization: `Bearer ${this._token}`,
-  //    "Content-Type": "application/json",
-  //  },
 });
 
 export default api;

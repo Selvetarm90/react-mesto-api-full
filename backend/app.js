@@ -9,6 +9,8 @@ const { handleError } = require('./utils/handleError');
 const { checkCorseError } = require('./utils/checkCorseError');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
+require('dotenv').config();
+
 const { PORT = 3000 } = process.env;
 const app = express();
 
