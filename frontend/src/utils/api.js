@@ -2,6 +2,7 @@ class Api {
   constructor(options) {
     this._baseUrl = options.baseUrl;
     this._headers = options.headers;
+    this._token = options.token;
   }
 
   _handleResponse(res) {
@@ -66,9 +67,10 @@ class Api {
 }
 
 const api = new Api({
+  token: localStorage.getItem("jwt"),
   baseUrl: "https://api.mesto.paramonov.nomoredomains.sbs",
    headers: {
-     authorization: `Bearer ${localStorage.getItem("token")}`,
+     authorization: `Bearer ${this._token}`,
      "Content-Type": "application/json",
    },
 });
