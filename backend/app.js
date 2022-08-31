@@ -7,6 +7,7 @@ const auth = require('./middlewares/auth');
 const NotFound = require('./errors/not-found');
 const { handleError } = require('./utils/handleError');
 const { checkCorseError } = require('./utils/checkCorseError');
+const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const { PORT = 3000 } = process.env;
 const app = express();
@@ -31,12 +32,16 @@ main().catch((err) => {
   console.log(err);
 });
 
+app.use(requestLogger);
+
 app.use(userRouter);
 app.use(auth);
 app.use(cardRouter);
 app.use((req, res, next) => {
   next(new NotFound('Маршрут не найден'));
 });
+
+app.use(errorLogger);
 
 app.use(errors());
 

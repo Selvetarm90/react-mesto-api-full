@@ -38,7 +38,7 @@ function App() {
         .getAllData(token)
         .then(([initialCards, userInfo]) => {
           setCurrentUser(userInfo);
-          setCards(initialCards);
+          setCards(initialCards.reverse());
         })
         .catch((err) => console.log(err));
     }
