@@ -32,6 +32,7 @@ function App() {
 
   useEffect(() => {
     if (loggedIn) {
+      const token = localStorage.getItem("jwt");
       api
         .getAllData(token)
         .then(([initialCards, userInfo]) => {
