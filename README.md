@@ -1,6 +1,6 @@
 # react-mesto-api-full
 Репозиторий для приложения проекта `Mesto`, включающий фронтенд и бэкенд части приложения со следующими возможностями: авторизации и регистрации пользователей, операции с карточками и пользователями.
-* Ссылка на * [проект](https://mesto.paramonov.nomoredomains.sbs/).
+* Ссылка на [проект](https://mesto.paramonov.nomoredomains.sbs/).
 * IP сервера: 84.201.133.40
 * Домен сервера: https://api.mesto.paramonov.nomoredomains.sbs
 
