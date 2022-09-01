@@ -2,12 +2,9 @@
 const allowedCors = [
   'https://mesto.paramonov.nomoredomains.sbs',
   'http://mesto.paramonov.nomoredomains.sbs',
-  // 'https://mesto.paramonov.nomoredomains.sbs/signin',
-  // 'http://mesto.paramonov.nomoredomains.sbs/signin',
-  // 'https://mesto.paramonov.nomoredomains.sbs/signup',
-  // 'http://mesto.paramonov.nomoredomains.sbs/signup',
   'localhost:3000',
 ];
+
 // eslint-disable-next-line consistent-return
 module.exports.checkCorseError = (req, res, next) => {
   const { origin } = req.headers; // Сохраняем источник запроса в переменную origin
