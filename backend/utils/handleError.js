@@ -1,7 +1,7 @@
 const { INTERNAL_SERVER_ERROR } = require('./constants');
 
 module.exports.handleError = (err, req, res, next) => {
-  const { statusCode = 500, message } = err;
+  const { statusCode = INTERNAL_SERVER_ERROR, message } = err;
 
   res
     .status(statusCode)

@@ -18,11 +18,6 @@ app.use(checkCorseError);
 
 app.use(express.json());
 
-app.use((req, res, next) => {
-  console.log(`${req.method} : ${req.path} ${JSON.stringify(req.body)}`);
-  next();
-});
-
 const main = async () => {
   await mongoose.connect('mongodb://localhost:27017/mestodb', {
     useNewUrlParser: true,

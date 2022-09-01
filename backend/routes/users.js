@@ -33,18 +33,18 @@ userRouter.get('/users', auth, getUsers);
 userRouter.get('/users/me', auth, getUser);
 userRouter.get('/users/:userId', celebrate({
   params: Joi.object().keys({
-    userId: Joi.string().pattern(regExpId),
+    userId: Joi.string().pattern(regExpId).required(),
   }),
 }), auth, qetUserById);
 userRouter.patch('/users/me', celebrate({
   body: Joi.object().keys({
-    name: Joi.string().min(2).max(30),
-    about: Joi.string().min(2).max(30),
+    name: Joi.string().min(2).max(30).required(),
+    about: Joi.string().min(2).max(30).required(),
   }),
 }), auth, updateProfile);
 userRouter.patch('/users/me/avatar', celebrate({
   body: Joi.object().keys({
-    avatar: Joi.string()
+    avatar: Joi.string().required()
       .pattern(regExpUrl),
   }),
 }), auth, updateAvatar);
