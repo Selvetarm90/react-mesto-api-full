@@ -26,7 +26,7 @@
 ![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
 
 
-## Ссылки на проект
+## Ссылки проекта
 
 - Проект доступен по ссылке: https://mesto.paramonov.nomoredomains.sbs/
 - Репозиторий моего бэкенда: https://github.com/Selvetarm90/react-mesto-api-full/tree/main/backend
